@@ -1,0 +1,215 @@
+@import url(https://fonts.googleapis.com/css?family=Righteous);
+@import url(https://fonts.googleapis.com/css?family=Cutive+Mono);
+
+@font-face {
+  font-family: "DICIS";
+  src: url(DICIS.ttf);
+}
+
+* {
+  font-family: "DICIS", sans-serif;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+  box-sizing: border-box;
+}
+html * {
+  box-sizing: inherit;
+}
+*:before,
+*:after {
+  content: " ";
+}
+body {
+  overflow: hidden;
+  background-color: #456ddd;
+  perspective: 1000px;
+  color: #fff;
+  font-family: "DICIS", sans-serif;
+  margin: 0;
+  text-align: center;
+  font-size: large;
+}
+
+/* Card */
+.card {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  margin-left: -175px;
+  width: 350px;
+  height: 470px;
+  transform-style: preserve-3d;
+  transition: all ease-in-out 1s;
+}
+
+.card .page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: 0 0;
+}
+
+.card .cover {
+  z-index: 5;
+  transform: rotateY(-20deg);
+  transition: transform ease-in-out 1.4s;
+}
+
+.card .cover .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #dd9445;
+  z-index: 3;
+}
+
+.card .cover::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: right bottom;
+  background-color: rgba(0, 0, 0, 0.3);
+  transform: skew(-8deg) rotateX(-10deg);
+  z-index: -1;
+  content: " ";
+}
+
+.card .cover button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  background: transparent;
+  border: 3px solid #fff;
+  color: #fff;
+  font-size: 20px;
+  padding: 0.5em 1.4em;
+}
+.card .cover button:focus {
+  outline: none;
+}
+
+.card .inside {
+  z-index: 1;
+  transform: rotateY(-8deg);
+}
+
+.card .inside .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #27292a;
+  z-index: 3;
+}
+
+.card .inside::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: right bottom;
+  background-color: rgba(0, 0, 0, 0.3);
+  transform: skew(-8deg) rotateX(-10deg);
+  z-index: -1;
+  content: " ";
+}
+
+.card.open {
+  margin-left: 0;
+}
+.card.open .cover {
+  transform: rotateY(-175deg);
+}
+
+/* Text */
+.t-text {
+  font-family: "DICIS", sans-serif;
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  font-size: x-large;
+}
+.b-text {
+  font-family: "DICIS", sans-serif;
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  font-size: x-large;
+}
+
+/* HB Text Effect */
+.hb {
+  margin-top: 100px;
+  color: #fff; /* warna putih */
+  font-family: "DICIS", sans-serif;
+  font-size: larger;
+  font-weight: 700;
+  position: relative;
+  text-align: center;
+
+  display: block; /* ubah dari inline-block jadi block */
+  white-space: normal; /* izinkan teks turun ke baris baru */
+  word-wrap: break-word; /* potong kata panjang */
+  overflow-wrap: break-word; /* kompatibilitas modern */
+  max-width: 90%; /* batasi lebar teks agar tidak keluar kartu */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hb::after,
+.hb::before {
+  content: attr(data-title);
+  text-shadow: 8px -8px 0px #27292a;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: depth 6s -1s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+}
+
+.hb::after {
+  background: radial-gradient(
+    top,
+    ellipse cover,
+    rgba(248, 100, 100, 1) 0%,
+    rgba(10, 255, 200, 1) 25%,
+    rgba(238, 124, 250, 1) 60%,
+    rgba(250, 166, 29, 1) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: translate3d(0px, 16px, 0px) scale(0.9);
+  z-index: -1;
+}
+
+.hb::before {
+  background: linear-gradient(
+    top,
+    rgba(55, 93, 177, 1) 0%,
+    rgba(253, 251, 0, 1) 30%,
+    rgba(239, 1, 124, 1) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: translate3d(0px, 32px, 0px) scale(0.8);
+  z-index: -2;
+}
+
+@keyframes depth {
+  50% {
+    transform: translate3d(0px, 0px, 0px);
+  }
+}
